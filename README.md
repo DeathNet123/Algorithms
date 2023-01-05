@@ -1,2 +1,2 @@
 # Algorithms
-This repository contains code that i wrote from 5-jan-2023 to God knows till i will be alive
+This repository contains code that i wrote from 5-jan-2023 to God knows till i will be alive. in short it contains bunch of random files which contains code that i wrote in my life just for fun...
