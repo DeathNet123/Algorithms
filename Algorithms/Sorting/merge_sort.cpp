@@ -17,16 +17,23 @@ void merge(int p, int q, int r, vector<int>& data)
     {
         R.push_back(data[idx]);
     }
-
-    for(int k = p; k <= r; k++)
+    for(int idx = p; idx <= r; idx++)
     {
-        if(l < L.size() && L[l] <= R[m])
+        if (l >= L.size())
         {
-            data[k] = L[l++];
+            data[idx] = R[m++];
+        }
+        else if (m >= R.size())
+        {
+            data[idx] = L[l++];
+        }
+        else if(L[l] <= R[m])
+        {
+            data[idx] = L[l++];
         }
         else
         {
-            data[k] = R[m++];
+            data[idx] = R[m++];
         }
     }
 }
@@ -48,7 +55,7 @@ int main(int argc, char **argv)
     srand(time(NULL)); //seeding...
     vector<int> data;
     //Setting the random length of the array
-    int n = rand() % 10 + 1;
+    int n = rand() % 20 + 1;
     //Adding random numbers in the array and printing them...
     for(int idx = 0; idx < n; idx++)
     {
@@ -60,7 +67,7 @@ int main(int argc, char **argv)
     merge_sort(0, data.size() - 1, data);
     //Printing the sorted array
     cout<<"After sorting\n";
-    for(int idx = 0; idx < n; idx++)
+    for(int idx = 0; idx < data.size(); idx++)
     {
         cout << data[idx] <<" ";
     }
