@@ -2,9 +2,9 @@
 using namespace std;
 
 /*Binary Exponentiation*/
-long long power(int n, int m)
+unsigned long long power(unsigned long long n, unsigned long long m)
 {
-    long long result = 1;
+    unsigned long long result = 1;
 
     while(m > 0)
     {
@@ -18,11 +18,11 @@ long long power(int n, int m)
    return result; 
 }
 
-long long power_recursive(int n, int m)
+unsigned long long power_recursive(unsigned long long n,  unsigned long long m)
 {
     if(m == 0)
         return 1;
-    long long result = power_recursive(n, m/2);
+    unsigned long long result = power_recursive(n, m/2);
     if(m % 2)
     {
         return result * result  * n; //this will be run always one time in case of odd
@@ -30,22 +30,39 @@ long long power_recursive(int n, int m)
     return result * result;
 }
 
-long long power_rec(int n, int m)
+unsigned long long power_rec(unsigned long long n, unsigned long long m)
 {
     if(m == 0)
         return 1;
-    long long result = power_rec(n*n, m >> 1);
+    unsigned long long result = power_rec(n*n, m >> 1);
     if(m & 1)
         return result * n;
     else return result;
 }
 
+unsigned long long power_mod(unsigned long long n, unsigned long long m, unsigned long long mod)
+{
+    n = n % m;
+    unsigned long long result = 1;
+    while(m > 0)
+    {
+        if(m & 1)
+        {
+            result = (result * n) % mod;
+        }
+        //since the previous n will always be mod no need to add it explicitly..
+        n = (n * n) % mod;
+        m >>= 1;
+    }      
+    return result;
+}
 int main(int argc, char **argv)
 {
-    int n = atoi(argv[1]);
-    int m = atoi(argv[2]);
+    long long n = atoi(argv[1]);
+    long long m = atoi(argv[2]);
     cout<<n<<" "<<m<<" "<<endl;
     cout<<power(n,m)<<endl;
     cout<<power_recursive(n,m)<<endl;
     cout<<power_rec(n,m)<<endl;
+    cout<<"Hello : "<<power_mod(n,m, 1000)<<endl;
 }
