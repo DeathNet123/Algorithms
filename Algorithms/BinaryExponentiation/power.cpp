@@ -42,13 +42,13 @@ unsigned long long power_rec(unsigned long long n, unsigned long long m)
 
 unsigned long long power_mod(unsigned long long n, unsigned long long m, unsigned long long mod)
 {
-    n = n % m;
+    n = n % mod;
     unsigned long long result = 1;
     while(m > 0)
     {
         if(m & 1)
         {
-            result = (result * n) % mod;
+            result = ((result % mod) * n) % mod;
         }
         //since the previous n will always be mod no need to add it explicitly..
         n = (n * n) % mod;
